@@ -2,7 +2,8 @@ module RailsLti2Provider
   module ControllerHelpers
 
     def lti_authentication
-      lti_message = IMS::LTI::Models::Messages::Message.generate(request.request_parameters)
+      parameters = params
+      lti_message = IMS::LTI::Models::Messages::Message.generate(parameters)
       lti_message.launch_url = request.url
       @lti_launch = RailsLti2Provider::LtiLaunch.check_launch(lti_message)
     end
